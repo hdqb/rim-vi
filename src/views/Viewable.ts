@@ -2,8 +2,7 @@ import { Account } from '../shared/entities/Account';
 import { Response } from 'express';
 
 export interface Viewable {
-  setResponse(res: Response): void;
-  display(accounts: Account[]): void;
-  showError(message: string): void;
-  navigate(path: string): void;
+  display(res: Response, accounts: Account[]): void;
+  showError(res: Response, message: string): void;
+  navigate(res: Response, path: string): void;
 }

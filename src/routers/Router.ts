@@ -27,7 +27,7 @@ export class Router implements Routerable {
       res.redirect(this.routes.dashboard);
     });
 
-    // Trang đăng nhập
+    // Trang đăng nhập (GET)
     app.get(this.routes.login, (req: Request, res: Response) => {
       let html = `
         <html><body>
@@ -42,24 +42,20 @@ export class Router implements Routerable {
       res.send(html);
     });
 
-    // Xử lý đăng nhập
+    // Xử lý đăng nhập (POST)
     app.post(this.routes.login, (req: Request, res: Response) => {
       const { email, password } = req.body;
-      // Gán đối tượng Response cho View để có thể trả về HTML
-      (this.view as any).setResponse(res);
-      this.presenter.login(email, password);
+      this.presenter.login(res, email, password);
     });
 
     // Trang dashboard
     app.get(this.routes.dashboard, (req: Request, res: Response) => {
-      (this.view as any).setResponse(res);
-      this.presenter.load();
+      this.presenter.load(res);
     });
 
     // Xử lý đăng xuất
     app.get(this.routes.logout, (req: Request, res: Response) => {
-      (this.view as any).setResponse(res);
-      this.presenter.logout();
+      this.presenter.logout(res);
     });
 
     // Bạn có thể thêm các route khác như register, profile theo nhu cầu

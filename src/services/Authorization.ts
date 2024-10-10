@@ -11,6 +11,6 @@ export class Authorization implements Authorizationable {
   };
 
   authorize(role: Roleary, action: string): boolean {
-    return this.permissions[role].includes(action);
+    return this.permissions[role]?.includes(action) || false;
   }
 }

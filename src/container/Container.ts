@@ -24,6 +24,7 @@ import { Loggerable } from '../shared/services/Loggerable';
 import { Logger } from '../services/Logger';
 import { Notificationable } from '../shared/services/Notificationable';
 import { Notification } from '../services/Notification';
+import { ApiRouter } from '../routers/ApiRouter';
 
 const container = new Container();
 
@@ -39,5 +40,8 @@ container.bind<Tokenizerable>(TYPES.Tokenizer).to(Tokenizer);
 container.bind<Historyable>(TYPES.History).to(History);
 container.bind<Loggerable>(TYPES.Logger).to(Logger);
 container.bind<Notificationable>(TYPES.Notification).to(Notification);
+
+// Bind ApiRouter
+container.bind<ApiRouter>(Symbol.for('ApiRouter')).to(ApiRouter);
 
 export default container;
